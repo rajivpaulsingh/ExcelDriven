@@ -5,6 +5,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class DataDriven {
@@ -26,6 +27,8 @@ public class DataDriven {
         - Access the data from excel into arrays
          */
 
+
+        ArrayList<String> a = new ArrayList<String>();
         FileInputStream fis = new FileInputStream("/Users/singh2_rajiv/Selenium/DemoData.xlsx");
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
@@ -66,8 +69,10 @@ public class DataDriven {
                         Iterator<Cell> cv = r.cellIterator();
 
                         while(cv.hasNext()) {
-                            System.out.println(cv.next().getStringCellValue());
+//                            System.out.println(cv.next().getStringCellValue());
+                            a.add(cv.next().getStringCellValue());
                         }
+                        System.out.println(a);
                     }
                 }
             }
