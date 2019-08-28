@@ -1,5 +1,7 @@
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -69,8 +71,17 @@ public class DataDriven {
                         Iterator<Cell> cv = r.cellIterator();
 
                         while(cv.hasNext()) {
+
+                            Cell c = cv.next();
+                            if(c.getCellType()== CellType.STRING) { //String value
+                                a.add(c.getStringCellValue());
+                            }
+                            else { //Integer value
+                                a.add(NumberToTextConverter.toText(c.getNumericCellValue()));
+//                                a.add(c.getNumericCellValue());
+                            }
 //                            System.out.println(cv.next().getStringCellValue());
-                            a.add(cv.next().getStringCellValue());
+//                            a.add(cv.next().getStringCellValue());
                         }
                         System.out.println(a);
                     }
